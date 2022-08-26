@@ -1,4 +1,5 @@
 import {db, collection, addDoc} from './firebase.js'
+
 const blogTitleField = document.querySelector('.title');
 const articleFeild = document.querySelector('.article');
 
