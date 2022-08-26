@@ -1,3 +1,4 @@
+import {db, collection, addDoc} from './firebase.js'
 const blogTitleField = document.querySelector('.title');
 const articleFeild = document.querySelector('.article');
 
@@ -64,19 +65,24 @@ publishBtn.addEventListener('click', () => {
         let docName = `${blogTitle}-${id}`;
         let date = new Date(); // for published at info
 
-        //access firstore with db variable;
-        db.collection("blogs").doc(docName).set({
-            title: blogTitleField.value,
-            article: articleFeild.value,
-            bannerImage: bannerPath,
-            publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
-        })
-        .then(() => {
-            location.href = `/${docName}`;
-        })
-        .catch((err) => {
-            console.error(err);
-        })
+        // function for adding information to database
+
+        (async function(){
+            try {
+                const docRef = await addDoc(collection(db, "blogs"), {
+                    title: blogTitleField.value,
+                    article: articleFeild.value,
+                    bannerImage: bannerPath,
+                    publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
+                });
+                console.log("Document written with ID: ", docRef.id);
+                location.href = `/${docName}`;
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        })();
+
+    
     }
 });
 
