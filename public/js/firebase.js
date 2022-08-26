@@ -1,5 +1,5 @@
 // Your web app's Firebase configuration
-  const firebaseConfig = {
+let firebaseConfig = {
     apiKey: "AIzaSyAhuEY0PJhIB5eNaxdlsBSyVgDeGa3wZcc",
     authDomain: "blog-b4305.firebaseapp.com",
     projectId: "blog-b4305",
@@ -9,8 +9,7 @@
   };
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 
   let db = firebase.firestore();
 
-  
