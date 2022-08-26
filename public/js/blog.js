@@ -26,7 +26,7 @@ const setupBlog = (data) => {
 
     banner.style.backgroundImage = `url(${data.bannerImage})`;
 
-    titleTag.innerHTML += blogTitle.innerHTML = data.title;
+    titleTag.innerHTML = blogTitle.innerHTML = data.title;
     publish.innerHTML += data.publishedAt;
 
     const article = document.querySelector('.article');
